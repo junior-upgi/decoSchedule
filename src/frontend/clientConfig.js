@@ -1,15 +1,9 @@
-export const systemReference = 'decoSchedule';
-// const development = true;
-// const serverPort = 9007;
-
-/*
+const systemReference = 'decoSchedule';
+const development = true;
+const serverPort = 9007;
 
 function serverHost() {
-    if (development === true) {
-        return 'http://localhost'; // development
-    } else {
-        return 'http://upgi.ddns.net'; // production
-    }
+    return (development === true) ? 'http://localhost' : 'http://upgi.ddns.net';
 }
 
 function constructServerUrl() {
@@ -18,6 +12,7 @@ function constructServerUrl() {
 
 export const serverUrl = constructServerUrl();
 
+/*
 export const employeeChatGroup = {
     id: -170186986,
     title: '統義原料控管系統群組',

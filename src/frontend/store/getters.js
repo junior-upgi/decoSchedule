@@ -1,3 +1,4 @@
 export default {
-    state: function(state) { return state; }
+    activeView: function(state) { return state.activeView; },
+    role: function(state) { return state.role; }
 };

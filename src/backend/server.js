@@ -7,8 +7,6 @@ if (process.env.NODE_ENV === 'development') {
     utility.logger.info('running in development mode');
 }
 
-// utility routes
-main.use('/', require('./route/utility/login.js'));
 // data routes
 main.use('/', require('./route/data/purchaseOrder.js'));
 main.use('/', require('./route/data/rawMaterial.js'));
@@ -40,6 +38,7 @@ main.use('/bower_components', express.static(path.join(__dirname, '/../bower_com
 
 // utility routes
 main.use('/', require('./route/utility/status.js'));
+main.use('/', require('./route/utility/login.js'));
 
 // initiate server script
 if (!module.parent) {

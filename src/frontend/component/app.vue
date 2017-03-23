@@ -8,9 +8,10 @@
                 </h2>
             </div>
         </div>
-        <!--
-        <div class="row"></div>
-        -->
+        <div class="row">
+            <sidebar v-if="activeView!=='login'"></sidebar>
+            <div :is="activeView"></div>
+        </div>
     </div>
 </template>
 
@@ -18,20 +19,48 @@
 import { mapActions, mapGetters, mapMutations } from 'vuex';
 import { store } from '../store/store.js';
 
+import login from './login.vue';
+import sidebar from './sidebar.vue';
+import admin from './admin/admin.vue';
+
 export default {
     name: 'app',
     store: store,
-    components: {},
+    components: { login, sidebar, admin },
     computed: {
-        ...mapGetters({})
+        ...mapGetters({ activeView: 'activeView' })
     },
     methods: {
-        ...mapActions({}),
-        ...mapMutations({})
+        ...mapActions({ componentErrorHandler: 'componentErrorHandler' }),
+        ...mapMutations({
+            redirectUser: 'redirectUser',
+            restoreToken: 'restoreToken'
+        })
     },
-    created: function() { }
+    created: function() {
+        // if jwt token exists in the sessionStorage
+        if (
+            (sessionStorage.token !== undefined) &&
+            (sessionStorage.token !== null) &&
+            (sessionStorage.token !== '')
+        ) {
+            this.restoreToken(sessionStorage.token); // restore token from session storage
+            this.initData()
+                .then((responseList) => {
+                    this.buildStore(responseList);
+                    this.redirectUser();
+                })
+                .catch((error) => {
+                    this.componentErrorHandler({
+                        component: 'app',
+                        method: 'created',
+                        situation: '初始化程序失敗',
+                        systemMessage: error
+                    });
+                });
+        }
+    }
 };
-
 </script>
 
 <style>

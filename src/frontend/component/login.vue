@@ -28,11 +28,11 @@ export default {
     },
     methods: {
         ...mapActions({
-            initData: 'initData',
-            componentErrorHandler: 'componentErrorHandler'
+            // initData: 'initData',
+            // componentErrorHandler: 'componentErrorHandler'
         }),
         ...mapMutations({
-            buildStore: 'buildStore',
+            // buildStore: 'buildStore',
             redirectUser: 'redirectUser',
             restoreToken: 'restoreToken'
         }),
@@ -48,7 +48,7 @@ export default {
                     return this.initData();
                 }).then((responseList) => {
                     this.password = '';
-                    this.buildStore(responseList);
+                    // this.buildStore(responseList);
                     this.redirectUser();
                 }).catch((error) => {
                     this.password = '';
