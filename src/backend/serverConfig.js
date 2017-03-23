@@ -1,7 +1,8 @@
 // system configuration
-export const systemReference = 'boilerplate';
+export const systemReference = 'decoSchedule';
 export const development = true;
 export const administrator = 241630569; // telegram account of system admin
+export const uploadDir = 'upload';
 export const logDir = 'log';
 export function passphrase() { // can be later changed to pull something from other locations
     return 'This is not a passphrase';

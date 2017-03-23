@@ -99,7 +99,7 @@
         "watchify": "^3.9.0"
     },
     "config": {
-        "appurl": "http://localhost:9007/deco-schedule/index.html",
+        "appurl": "http://localhost:9007/decoSchedule/index.html",
         "serverLintingReportUrl": "http://localhost:9007/deco-schedule/lintingReport/server.html",
         "clientLintingReportUrl": "http://localhost:9007/deco-schedule/lintingReport/client.html"
     },

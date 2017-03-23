@@ -20,10 +20,11 @@ main.use('/', require('./route/data/supplier.js'));
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import express from 'express';
+import fs from 'fs';
 import morgan from 'morgan';
 import path from 'path';
 
-import { serverPort, serverUrl, systemReference } from './serverConfig.js';
+import { serverPort, serverUrl, systemReference, uploadDir } from './serverConfig.js';
 import { logger, statusReport } from './utility.js';
 
 const app = express();
@@ -42,6 +43,10 @@ main.use('/', require('./route/utility/status.js'));
 
 // initiate server script
 if (!module.parent) {
+    if (!fs.existsSync(`${uploadDir}/`)) { // check if photo upload dir's existence
+        fs.mkdirSync(`${uploadDir}/`); // if not found, create directory
+        logger.info(`${uploadDir}/ created for image storage`);
+    }
     app.listen(serverPort, (error) => { // start backend server
         if (error) {
             logger.error(`error starting ${systemReference} server: ${error}`);
