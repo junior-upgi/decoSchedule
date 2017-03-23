@@ -1,0 +1,18 @@
+{
+    "name": "deco-schedule",
+    "description": "allow review and update glass decoration schedule with ability to upload photos of the product",
+    "main": "public/main.js",
+    "authors": ["Chia-Yu Tsai"],
+    "license": "MIT",
+    "homepage": "https://github.com/junior-upgi/deco-schedule",
+    "private": true,
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components"
+    ],
+    "dependencies": {
+        "bootstrap": "^3.3.7",
+        "jquery": "^3.1.1"
+    }
+}
