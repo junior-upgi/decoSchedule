@@ -18,7 +18,7 @@ SELECT
         END AS compPhone
     ,CASE
         WHEN a.SAL_NO = '05060001' THEN '#381'
-        WHEN a.SAL_NO = '03090001' THEN '#未知' -- 研發 林志鑫
+        WHEN a.SAL_NO = '03090001' THEN '#264' -- 研發 林志鑫
         ELSE NULL
         END AS compPhoneExt
 FROM productDatabase.dbo.privilege a
