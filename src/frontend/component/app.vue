@@ -22,16 +22,22 @@ import { store } from '../store/store.js';
 import login from './login.vue';
 import sidebar from './sidebar.vue';
 import admin from './admin/admin.vue';
+import rnd from './rnd/rnd.vue';
+import sales from './sales/sales.vue';
+import prod from './prod/prod.vue';
 
 export default {
     name: 'app',
     store: store,
-    components: { login, sidebar, admin },
+    components: { login, sidebar, admin, rnd, sales, prod },
     computed: {
         ...mapGetters({ activeView: 'activeView' })
     },
     methods: {
-        ...mapActions({ componentErrorHandler: 'componentErrorHandler' }),
+        ...mapActions({
+            componentErrorHandler: 'componentErrorHandler',
+            initData: 'initData'
+        }),
         ...mapMutations({
             redirectUser: 'redirectUser',
             restoreToken: 'restoreToken'
@@ -47,7 +53,7 @@ export default {
             this.restoreToken(sessionStorage.token); // restore token from session storage
             this.initData()
                 .then((responseList) => {
-                    this.buildStore(responseList);
+                    // this.buildStore(responseList);
                     this.redirectUser();
                 })
                 .catch((error) => {

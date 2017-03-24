@@ -28,8 +28,8 @@ export default {
     },
     methods: {
         ...mapActions({
-            // initData: 'initData',
-            // componentErrorHandler: 'componentErrorHandler'
+            initData: 'initData',
+            componentErrorHandler: 'componentErrorHandler'
         }),
         ...mapMutations({
             // buildStore: 'buildStore',

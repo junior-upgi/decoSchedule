@@ -1,9 +1,6 @@
 <template lang="html">
     <div class="col-xs-12 col-sm-2">
         <!--
-        <button v-if="(role==='admin')||(role==='furnace')" type="button" class="btn btn-default btn-block" :disabled="dataProcessingState?true:false" :class="{'btn-danger':activeView==='furnace'}" @click="changeWorkingView('furnace')">
-            窯爐模組
-        </button>
         <button
             v-if="(role==='admin')||(role==='furnace')"
             type="button" class="btn btn-default btn-block"
@@ -38,10 +35,30 @@
         <button
             v-if="role==='admin'"
             type="button" class="btn btn-default btn-block"
-            :disabled="dataProcessingState?true:false"
             :class="{'btn-danger':activeView==='admin'}"
             @click="changeWorkingView('admin')">
             管理模組
+        </button>
+        <button
+            v-if="(role==='admin')||(role==='rnd')"
+            type="button" class="btn btn-default btn-block"
+            :class="{'btn-danger':activeView==='rnd'}"
+            @click="changeWorkingView('rnd')">
+            研發模組
+        </button>
+        <button
+            v-if="(role==='admin')||(role==='sales')"
+            type="button" class="btn btn-default btn-block"
+            :class="{'btn-danger':activeView==='sales'}"
+            @click="changeWorkingView('sales')">
+            業務模組
+        </button>
+        <button
+            v-if="(role==='admin')||(role==='prod')"
+            type="button" class="btn btn-default btn-block"
+            :class="{'btn-danger':activeView==='prod'}"
+            @click="changeWorkingView('prod')">
+            生產模組
         </button>
         <button type="button" class="btn btn-default btn-block" @click="logout()">
             登出系統
