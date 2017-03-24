@@ -1,15 +1,22 @@
 <template lang="html">
-    <form>
+    <form @submit.prevent="createSchedule()">
         <div>
-            <h2>新增打樣記錄</h2>
+            <h2>
+                新增打樣記錄
+                <small class="text-danger">*紅字為必填欄位</small>
+            </h2>
             <br>
         </div>
         <div class="form-group control-group form-inline">
-            <label for="PRD_NO" class="text-danger">產品編號</label>
+            <label for="sampleNumber" class="text-danger">打樣編號</label>&nbsp;&nbsp;&nbsp;
+            <input type="text" class="form-control" id="sampleNumber" placeholder="打樣編號" maxlength="30" required>
+        </div>
+        <div class="form-group control-group form-inline">
+            <label for="PRD_NO" class="text-danger">產品編號</label>&nbsp;&nbsp;&nbsp;
             <input type="text" class="form-control" id="PRD_NO" placeholder="產品編號" required>
         </div>
         <div class="form-group control-group form-inline">
-            <label for="client" class="text-danger">客戶/業務</label>
+            <label for="client" class="text-danger">客戶/業務</label>&nbsp;&nbsp;
             <input type="text" class="form-control" id="client" placeholder="客戶/業務" required>
         </div>
         <div class="form-group control-group form-inline">
@@ -17,7 +24,7 @@
             <input type="file" id="photo">
         </div>
         <div class="form-group control-group form-inline">
-            <label for="qualityGrade">品質等級</label>
+            <label for="qualityGrade">品質等級</label>&nbsp;&nbsp;&nbsp;&nbsp;
             <label
                 v-for="qualityGrade in qualityGradeList"
                 class="radio-inline">
@@ -31,29 +38,27 @@
             </label>
         </div>
         <div class="form-group control-group form-inline">
-            <label for="decoMethod" class="text-danger">加工方式</label>
+            <label for="decoMethod" class="text-danger">加工方式</label>&nbsp;&nbsp;&nbsp;
             <input type="text" class="form-control" id="decoMethod" placeholder="加工方式" required>
         </div>
         <div class="form-group control-group form-inline">
-            <label for="requestedCount" class="text-danger">需求數量</label>
+            <label for="requestedCount" class="text-danger">需求數量</label>&nbsp;&nbsp;&nbsp;
             <input type="number" min="1" class="form-control" id="requestedCount" placeholder="需求數量" required>
         </div>
         <div class="form-group control-group form-inline">
-            <label for="requestReceived" class="text-danger">打樣單</label>
+            <label for="requestReceived" class="text-danger">打樣單</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <input type="date" class="form-control" id="requestReceived" required>
         </div>
         <div class="form-group control-group form-inline">
-            <label for="artworkReceived">字稿</label>
+            <label for="artworkReceived">字稿</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <input type="date" class="form-control" id="artworkReceived">
         </div>
         <div class="form-group control-group form-inline">
-            <label for="componentReceived">白瓶</label>
+            <label for="componentReceived">白瓶</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <input type="date" class="form-control" id="componentReceived">
         </div>
         <div class="form-group control-group form-inline">
-        </div>
-        <div class="form-group control-group form-inline">
-            <label for="daysRequired" class="text-danger">預估需時</label>
+            <label for="daysRequired" class="text-danger">預估需時</label>&nbsp;&nbsp;&nbsp;
             <input type="number" class="form-control" id="daysRequired" placeholder="需求日數" required>
         </div>
         <div class="form-group control-group form-inline">
@@ -71,6 +76,11 @@ export default {
         return {
             qualityGradeList: ['A', 'B', 'C', 'D']
         };
+    },
+    methods: {
+        createSchedule: function() {
+            console.log('test');
+        }
     }
 };
 </script>
