@@ -1,13 +1,44 @@
-/*
 const express = require('express');
+const tokenValidation = require('../../middleware/tokenValidation.js');
+
+const router = express.Router();
+
+router.route('/data/decoSampling/active').all(tokenValidation)
+    .get((request, response, next) => {
+        return response.status(200).json({
+            activeDecoSamplingList: [{
+                id: '8CE62889-3A38-4E58-8E44-B9B3CB665709',
+                PRD_NO: 'B2500500',
+                SAL_NO: '05060001',
+                CUS_NO: 'FH02',
+                qualityGrade: 'A',
+                decorationMethod: '印刷',
+                artworkReceived: '2017-03-21',
+                requestReceived: '2017-03-20',
+                glassBottleReceived: '2017-03-20',
+                originalSample: true,
+                requestedCount: 12,
+                supplierCount: null,
+                outsourcingCompleted: null,
+                sprayDeptCompleted: null,
+                printDeptCompleted: null,
+                daysRequired: 7,
+                actualCompleted: null,
+                situation: null,
+                note: null,
+                cost: null
+            }]
+        });
+    });
+
+module.exports = router;
+/*
 const moment = require('moment-timezone');
 const Treeize = require('treeize');
 const uuidV4 = require('uuid/v4');
 const serverConfig = require('../../serverConfig.js');
 const utility = require('../../utility.js');
-const tokenValidation = require('../../middleware/tokenValidation.js');
 
-const router = express.Router();
 
 router.get('/data/purchaseOrder/contentSummary', tokenValidation, (request, response, next) => {
     let knex = require('knex')(serverConfig.mssqlConfig);
@@ -346,5 +377,4 @@ router.route('/data/purchaseOrder')
         });
     });
 
-module.exports = router;
 */

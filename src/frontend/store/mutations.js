@@ -12,14 +12,37 @@ function emptyStore(state) {
     state.token = null;
     // working data
     state.userData = {};
+    state.activeDecoSamplingList = [];
 }
 
 export default {
+    // application state control
     forceViewChange: function(state, view) { state.activeView = view; },
     redirectUser: function(state) { state.activeView = state.role; },
-    resetStore: resetStore,
-    restoreToken: restoreToken
+    restoreToken: restoreToken,
+    // general vuex store data manipulation
+    buildStore: buildStore, // initialize the store from ajax data
+    rebuildData: rebuildData, // reinitialize the store partially
+    resetStore: resetStore // empty the store with default value
 };
+
+function buildStore(state, responseList) {
+    let dataObject = {};
+    responseList.forEach((response) => {
+        Object.assign(dataObject, response.data);
+    });
+    for (let objectIndex in dataObject) {
+        state[objectIndex] = null;
+        state[objectIndex] = dataObject[objectIndex];
+    }
+}
+
+function rebuildData(state, dataObject) {
+    for (let objectIndex in dataObject) {
+        state[objectIndex] = null;
+        state[objectIndex] = dataObject[objectIndex];
+    }
+}
 
 function resetStore(state) {
     sessionStorage.clear();

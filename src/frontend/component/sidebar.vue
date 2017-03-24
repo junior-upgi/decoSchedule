@@ -60,7 +60,9 @@
             @click="changeWorkingView('prod')">
             生產模組
         </button>
-        <button type="button" class="btn btn-default btn-block" @click="logout()">
+        <button
+            type="button" class="btn btn-default btn-block"
+            @click="logout()">
             登出系統
         </button>
     </div>
