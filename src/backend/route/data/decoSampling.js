@@ -1,34 +1,28 @@
-const express = require('express');
-const tokenValidation = require('../../middleware/tokenValidation.js');
+import express from 'express';
+
+import tokenValidation from '../../middleware/tokenValidation.js';
+import { mssqlConfig } from '../../serverConfig.js';
+import { endpointErrorHandler } from '../../utility.js';
 
 const router = express.Router();
 
 router.route('/data/decoSampling/active').all(tokenValidation)
     .get((request, response, next) => {
-        return response.status(200).json({
-            activeDecoSamplingList: [{
-                id: '8CE62889-3A38-4E58-8E44-B9B3CB665709',
-                PRD_NO: 'B2500500',
-                SAL_NO: '05060001',
-                CUS_NO: 'FH02',
-                qualityGrade: 'A',
-                decorationMethod: '印刷',
-                artworkReceived: '2017-03-21',
-                requestReceived: '2017-03-20',
-                glassBottleReceived: '2017-03-20',
-                originalSample: true,
-                requestedCount: 12,
-                supplierCount: null,
-                outsourcingCompleted: null,
-                sprayDeptCompleted: null,
-                printDeptCompleted: null,
-                daysRequired: 7,
-                actualCompleted: null,
-                situation: null,
-                note: null,
-                cost: null
-            }]
-        });
+        let knex = require('knex')(mssqlConfig);
+        knex('productDatabase.dbo.decoSampling')
+            .select('*').where({ actualCompleted: null }).debug(false)
+            .then((resultset) => {
+                return response.status(200).json({ activeDecoSamplingList: resultset });
+            }).catch((error) => {
+                return response.status(500).json(
+                    endpointErrorHandler(
+                        request.method,
+                        request.originalUrl,
+                        `玻璃加工打樣資料讀取發生錯誤: ${error}`)
+                );
+            }).finally(() => {
+                knex.destroy();
+            });
     });
 
 module.exports = router;
